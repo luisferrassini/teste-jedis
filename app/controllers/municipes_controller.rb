@@ -17,11 +17,13 @@ class MunicipesController < ApplicationController
                                                      "%#{I18n.transliterate(params[:uf].downcase)}%")
     end
     @credential_warnings = []
-    if ENV['SENDPULSE_API_USER'] == 'username' && ENV['SENDPULSE_API_KEY'] == 'password'
-      @credential_warnings << 'Sendpulse credentials not set'
-    end
-    if ENV['SMTP_ADDRESS'] == 'smtp.example.com' && ENV['SMTP_PORT'] == '587' && ENV['SMTP_HOST'] == 'example.com' && ENV['SMTP_USERNAME'] == 'username' && ENV['SMTP_PASSWORD'] == 'password'
-      @credential_warnings << 'Mailtrap credentials not set'
+    if ENV["RAILS_ENV"] != 'production'
+      if ENV['SENDPULSE_API_USER'] == 'username' && ENV['SENDPULSE_API_KEY'] == 'password'
+        @credential_warnings << 'Sendpulse credentials not set'
+      end
+      if ENV['SMTP_ADDRESS'] == 'smtp.example.com' && ENV['SMTP_PORT'] == '587' && ENV['SMTP_HOST'] == 'example.com' && ENV['SMTP_USERNAME'] == 'username' && ENV['SMTP_PASSWORD'] == 'password'
+        @credential_warnings << 'Mailtrap credentials not set'
+      end
     end
   end
 
