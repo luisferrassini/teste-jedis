@@ -1,5 +1,5 @@
 class MunicipesController < ApplicationController
-  before_action :set_municipe, only: %i[show edit update destroy]
+  before_action :set_municipe, only: %i[show edit update]
 
   # GET /municipes or /municipes.json
   def index
@@ -17,13 +17,13 @@ class MunicipesController < ApplicationController
                                                      "%#{I18n.transliterate(params[:uf].downcase)}%")
     end
     @credential_warnings = []
-    if ENV["RAILS_ENV"] != 'production'
-      if ENV['SENDPULSE_API_USER'] == 'username' && ENV['SENDPULSE_API_KEY'] == 'password'
-        @credential_warnings << 'Sendpulse credentials not set'
-      end
-      if ENV['SMTP_ADDRESS'] == 'smtp.example.com' && ENV['SMTP_PORT'] == '587' && ENV['SMTP_HOST'] == 'example.com' && ENV['SMTP_USERNAME'] == 'username' && ENV['SMTP_PASSWORD'] == 'password'
-        @credential_warnings << 'Mailtrap credentials not set'
-      end
+    return unless ENV['RAILS_ENV'] != 'production'
+
+    if ENV['SENDPULSE_API_USER'] == 'username' && ENV['SENDPULSE_API_KEY'] == 'password'
+      @credential_warnings << 'Sendpulse credentials not set'
+    end
+    if ENV['SMTP_ADDRESS'] == 'smtp.example.com' && ENV['SMTP_PORT'] == '587' && ENV['SMTP_HOST'] == 'example.com' && ENV['SMTP_USERNAME'] == 'username' && ENV['SMTP_PASSWORD'] == 'password'
+      @credential_warnings << 'Mailtrap credentials not set'
     end
   end
 
@@ -69,14 +69,14 @@ class MunicipesController < ApplicationController
   end
 
   # DELETE /municipes/1 or /municipes/1.json
-  def destroy
-    @municipe.destroy!
+  # def destroy
+  #   @municipe.destroy!
 
-    respond_to do |format|
-      format.html { redirect_to municipes_url, notice: 'Municipe was successfully destroyed.' }
-      format.json { head :no_content }
-    end
-  end
+  #   respond_to do |format|
+  #     format.html { redirect_to municipes_url, notice: 'Municipe was successfully destroyed.' }
+  #     format.json { head :no_content }
+  #   end
+  # end
 
   private
 
