@@ -19,14 +19,30 @@ class Municipe < ApplicationRecord
   end
 
   def enviar_email_e_sms_cadastro
-    # UserMailer.welcome_email(@municipe, 'Welcome', @municipe.to_json).deliver_now
-    # sendpulse = SendpulseService.new(SENDPULSE_API_USER, SENDPULSE_API_KEY)
-    # sendpulse.send_sms(telefone, 'Atualização no cadastro do cadastro de Municipe')
+    begin
+      UserMailer.welcome_email(@municipe, 'Welcome', @municipe.to_json).deliver_now
+    rescue StandardError
+      puts 'Couldn\'t send email using mailtrap'
+    end
+    begin
+      sendpulse = SendpulseService.new(SENDPULSE_API_USER, SENDPULSE_API_KEY)
+      sendpulse.send_sms(telefone, 'Atualização no cadastro do cadastro de Municipe')
+    rescue StandardError
+      puts 'Couldn\'t send sms using sendpulse'
+    end
   end
 
   def enviar_email_e_sms_atualizacao_status
-    # UserMailer.update_email(@municipe, 'Update', @municipe.to_json).deliver_now
-    # sendpulse = SendpulseService.new(SENDPULSE_API_USER, SENDPULSE_API_KEY)
-    # sendpulse.send_sms(telefone, 'Atualização no cadastro do cadastro de Municipe')
+    begin
+      UserMailer.update_email(@municipe, 'Update', @municipe.to_json).deliver_now
+    rescue StandardError
+      puts 'Couldn\'t send email using mailtrap'
+    end
+    begin
+      sendpulse = SendpulseService.new(SENDPULSE_API_USER, SENDPULSE_API_KEY)
+      sendpulse.send_sms(telefone, 'Atualização no cadastro do cadastro de Municipe')
+    rescue StandardError
+      puts 'Couldn\'t send sms using sendpulse'
+    end
   end
 end
