@@ -18,10 +18,10 @@ class MunicipesController < ApplicationController
     end
     @credential_warnings = []
     if ENV['SENDPULSE_API_USER'] == 'username' && ENV['SENDPULSE_API_KEY'] == 'password'
-      @credential_warnings << 'Sendpulse credentials not set on docker-compose'
+      @credential_warnings << 'Sendpulse credentials not set'
     end
-    if ENV['SMTP_ADDRESS'] == 'smtp.example.com' && ENV['SMTP_PORT'] == '587' && ENV['SMTP_DOMAIN'] == 'example.com' && ENV['SMTP_USERNAME'] == 'username' && ENV['SMTP_PASSWORD'] == 'password'
-      @credential_warnings << 'Mailtrap credentials not set on docker-compose'
+    if ENV['SMTP_ADDRESS'] == 'smtp.example.com' && ENV['SMTP_PORT'] == '587' && ENV['SMTP_HOST'] == 'example.com' && ENV['SMTP_USERNAME'] == 'username' && ENV['SMTP_PASSWORD'] == 'password'
+      @credential_warnings << 'Mailtrap credentials not set'
     end
   end
 
