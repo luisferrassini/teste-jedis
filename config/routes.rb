@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
   root 'municipes#index'
 
-  resources :municipes do
-    resources :enderecos
-  end
+  resources :municipes, except: [:destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
