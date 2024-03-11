@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   root 'municipes#index'
 
+  get 'municipes/all' => 'municipes#index', defaults: { inativos: true }
   resources :municipes, except: [:destroy]
 
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html

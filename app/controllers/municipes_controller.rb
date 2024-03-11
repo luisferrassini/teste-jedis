@@ -3,7 +3,11 @@ class MunicipesController < ApplicationController
 
   # GET /municipes or /municipes.json
   def index
-    @municipes = Municipe.where(status: true)
+    @municipes = if params[:status].present?
+                   Municipe.all
+                 else
+                   Municipe.where(status: true)
+                 end
     if params[:search].present?
       @municipes = @municipes.where('LOWER(nome_completo) LIKE ?',
                                     "%#{I18n.transliterate(params[:search].downcase)}%")
