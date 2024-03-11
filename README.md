@@ -2,6 +2,8 @@
 
 Este é um projeto Ruby on Rails para gerenciar informações de cidadões de um município. Ele permite criar, visualizar, editar e inativar registros de cidadões, além de filtrar por dados pessoais e de endereço.
 
+Versão live do projeto: https://teste-jedis.fly.dev/
+
 ## Configuração do Ambiente
 
 Antes de rodar o projeto, é necessário configurar algumas variáveis de ambiente para envio de SMS e de e-mail.
@@ -18,35 +20,39 @@ Antes de rodar o projeto, é necessário configurar algumas variáveis de ambien
 
 ### Configuração das Variáveis de Ambiente
 
-Você pode configurar as variáveis de ambiente de diferentes maneiras, dependendo do seu ambiente de desenvolvimento, vou deixar aqui explicado como colocar no docker-compose.
+Você pode configurar as variáveis de ambiente de diferentes maneiras, dependendo do seu ambiente de desenvolvimento.
 
 #### Docker Compose
 
 Se estiver utilizando Docker Compose, você pode definir as variáveis de ambiente no arquivo `docker-compose.dev.yml`:
 
 ```yaml
-version: '3.8'
-services:
-  web:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    ports:
-      - "3000:3000"
-    environment:
-      SMTP_ADDRESS: smtp.example.com
-      SMTP_PORT: 587
-      SMTP_DOMAIN: example.com
-      SMTP_USERNAME: username
-      SMTP_PASSWORD: password
-      MAILTRAP_USERNAME: mailtrap_username
-      MAILTRAP_PASSWORD: mailtrap_password
+SMTP_ADDRESS: smtp.example.com
+SMTP_PORT: 587
+SMTP_HOST: example.com
+SMTP_USERNAME: username
+SMTP_PASSWORD: password
+SENDPULSE_API_USER: username
+SENDPULSE_API_KEY: password
+```
+
+#### Localmente
+Se você for rodar o projeto localmente, você pode rodar os seguintes exports para definir as variáveis de ambiente:
+
+```bash
+export SMTP_ADDRESS=smtp.example.com
+export SMTP_PORT=587
+export SMTP_HOST=example.com
+export SMTP_USERNAME=username
+export SMTP_PASSWORD=password
+export SENDPULSE_API_USER=username
+export SENDPULSE_API_KEY=password
 ```
 
 ## Rodando o Projeto
 
 ### Rodando com Docker Compose
-Se preferir rodar o projeto com Docker Compose, siga os passos abaixo:
+Para rodar o projeto com Docker Compose, siga os passos abaixo:
 
 - Clone este repositório:
 ```git clone https://github.com/luisferrassini/teste-jedis.git```
@@ -78,4 +84,4 @@ Para rodar o projeto localmente, siga os passos abaixo (sendo necessário ter in
 - Para parar o servidor, pressione Ctrl + C.
 
 ## Licença
-Este projeto está licenciado sob a MIT License.
+Este projeto está licenciado sob a [Licença MIT](https://opensource.org/licenses/MIT).
