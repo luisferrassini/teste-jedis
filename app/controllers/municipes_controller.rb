@@ -12,10 +12,17 @@ class MunicipesController < ApplicationController
       @municipes = @municipes.joins(:endereco).where('LOWER(enderecos.cidade) LIKE ?',
                                                      "%#{I18n.transliterate(params[:cidade].downcase)}%")
     end
-    return unless params[:uf].present?
-
-    @municipes = @municipes.joins(:endereco).where('LOWER(enderecos.uf) LIKE ?',
-                                                   "%#{I18n.transliterate(params[:uf].downcase)}%")
+    if params[:uf].present?
+      @municipes = @municipes.joins(:endereco).where('LOWER(enderecos.uf) LIKE ?',
+                                                     "%#{I18n.transliterate(params[:uf].downcase)}%")
+    end
+    @credential_warnings = []
+    if ENV['SENDPULSE_API_USER'] == 'username' && ENV['SENDPULSE_API_KEY'] == 'password'
+      @credential_warnings << 'Sendpulse credentials not set on docker-compose'
+    end
+    if ENV['SMTP_ADDRESS'] == 'smtp.example.com' && ENV['SMTP_PORT'] == '587' && ENV['SMTP_DOMAIN'] == 'example.com' && ENV['SMTP_USERNAME'] == 'username' && ENV['SMTP_PASSWORD'] == 'password'
+      @credential_warnings << 'Mailtrap credentials not set on docker-compose'
+    end
   end
 
   # GET /municipes/1 or /municipes/1.json
