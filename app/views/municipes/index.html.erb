@@ -1,10 +1,10 @@
 <div class="max-w-4xl mx-auto px-4 py-8">
-  <h1 class="text-2xl font-bold mb-4">Municipes</h1>
+  <h1 class="text-2xl font-bold mb-4">Municipes CRUD</h1>
   <h3 class="text-1xl font-bold mb-4">Filters</h3>
   <%= form_tag municipes_path, method: :get do %>
-    <%= text_field_tag :search, params[:search], placeholder: "Search by name", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    <%= text_field_tag :cidade, params[:cidade], placeholder: "Filter by cidade", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
-    <%= text_field_tag :uf, params[:uf], placeholder: "Filter by uf", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= text_field_tag :search, params[:search], placeholder: "Search by \"nome\"", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= text_field_tag :cidade, params[:cidade], placeholder: "Search by \"cidade\"", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    <%= text_field_tag :uf, params[:uf], placeholder: "Search by \"uf\"", class: "shadow appearance-none border rounded py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
     <%= submit_tag "Search", class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 my-2 rounded focus:outline-none focus:shadow-outline' %>
   <% end %>
   <% @municipes.each do |municipe| %>
