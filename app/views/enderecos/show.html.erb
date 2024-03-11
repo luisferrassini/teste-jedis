@@ -1,0 +1,14 @@
+<div class="max-w-4xl mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-4">Endereco Details</h1>
+  <div class="bg-white shadow-md rounded-md p-4 mb-4">
+    <p class="text-gray-700 mb-2"><strong>CEP:</strong> <%= @endereco.cep %></p>
+    <p class="text-gray-700 mb-2"><strong>Logradouro:</strong> <%= @endereco.logradouro %></p>
+    <p class="text-gray-700 mb-2"><strong>Complemento:</strong> <%= @endereco.complemento %></p>
+    <p class="text-gray-700 mb-2"><strong>Bairro:</strong> <%= @endereco.bairro %></p>
+    <p class="text-gray-700 mb-2"><strong>Cidade:</strong> <%= @endereco.cidade %></p>
+    <p class="text-gray-700 mb-2"><strong>UF:</strong> <%= @endereco.uf %></p>
+    <p class="text-gray-700 mb-2"><strong>Código IBGE:</strong> <%= @endereco.codigo_ibge %></p>
+  </div>
+  <%= link_to 'Edit', edit_endereco_path(@endereco), class: 'bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded mr-4 focus:outline-none focus:shadow-outline' %>
+  <%= link_to 'Back', enderecos_path, class: 'bg-gray-500 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
+</div>

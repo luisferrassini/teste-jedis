@@ -1,0 +1,78 @@
+<%= form_with(model: municipe, local: true) do |form| %>
+  <% if municipe.errors.any? %>
+    <div id="error_explanation" class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative">
+      <h2 class="font-bold"> <%= pluralize(municipe.errors.count, "error") %> prohibited this municipe from being saved:</h2>
+      <ul>
+        <% municipe.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class="mb-4">
+    <%= form.label :nome_completo, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :nome_completo, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :cpf, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :cpf, pattern: '/\A\d{3}\.\d{3}\.\d{3}-\d{2}\z/', class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :cns, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :cns, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :email, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :email, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :data_nascimento, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.date_field :data_nascimento, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :telefone, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.text_field :telefone, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :foto, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.file_field :foto, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+  </div>
+  <div class="mb-4">
+    <%= form.label :status, class: "block text-gray-700 text-sm font-bold mb-2" %>
+    <%= form.check_box :status, class: "form-checkbox h-5 w-5 text-blue-600" %>
+  </div>
+  <!-- Address Fields -->
+  <%= form.fields_for :endereco do |endereco_form| %>
+    <div class="mb-4">
+      <%= endereco_form.label :cep, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= endereco_form.text_field :cep, pattern: '/\A\d{5}-\d{3}\z/', class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="mb-4">
+      <%= endereco_form.label :logradouro, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= endereco_form.text_field :logradouro, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="mb-4">
+      <%= endereco_form.label :complemento, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= endereco_form.text_field :complemento, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="mb-4">
+      <%= endereco_form.label :bairro, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= endereco_form.text_field :bairro, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="mb-4">
+      <%= endereco_form.label :cidade, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= endereco_form.text_field :cidade, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="mb-4">
+      <%= endereco_form.label :uf, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= endereco_form.text_field :uf, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+    <div class="mb-4">
+      <%= endereco_form.label :codigo_ibge, class: "block text-gray-700 text-sm font-bold mb-2" %>
+      <%= endereco_form.text_field :codigo_ibge, class: "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" %>
+    </div>
+  <% end %>
+  <div class="mb-4">
+    <%= form.submit class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" %>
+  </div>
+<% end %>

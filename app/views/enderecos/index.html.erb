@@ -1,0 +1,19 @@
+<div class="max-w-4xl mx-auto px-4 py-8">
+  <h1 class="text-2xl font-bold mb-4">Enderecos</h1>
+  <% @enderecos.each do |endereco| %>
+    <div class="bg-white shadow-md rounded-md p-4 mb-4">
+      <h2 class="text-xl font-bold mb-2">Endereco <%= endereco.id %></h2>
+      <p class="text-gray-700 mb-2"><strong>CEP:</strong> <%= endereco.cep %></p>
+      <p class="text-gray-700 mb-2"><strong>Logradouro:</strong> <%= endereco.logradouro %></p>
+      <p class="text-gray-700 mb-2"><strong>Complemento:</strong> <%= endereco.complemento %></p>
+      <p class="text-gray-700 mb-2"><strong>Bairro:</strong> <%= endereco.bairro %></p>
+      <p class="text-gray-700 mb-2"><strong>Cidade:</strong> <%= endereco.cidade %></p>
+      <p class="text-gray-700 mb-2"><strong>UF:</strong> <%= endereco.uf %></p>
+      <p class="text-gray-700 mb-2"><strong>Código IBGE:</strong> <%= endereco.codigo_ibge %></p>
+      <%= link_to 'Show', endereco, class: 'text-blue-500 hover:text-blue-700 mr-4' %>
+      <%= link_to 'Edit', edit_endereco_path(endereco), class: 'text-green-500 hover:text-green-700 mr-4' %>
+      <%= link_to 'Delete', endereco, method: :delete, data: { confirm: 'Are you sure?' }, class: 'text-red-500 hover:text-red-700' %>
+    </div>
+  <% end %>
+  <%= link_to 'New Endereco', new_endereco_path, class: 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline' %>
+</div>

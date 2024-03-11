@@ -1,0 +1,15 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: db
+  username: municipe_crud
+  password: example
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: municipe_crud_development
+
+test:
+  <<: *default
+  database: municipe_crud_test
