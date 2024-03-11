@@ -18,7 +18,7 @@ services:
       MUNICIPE_CRUD_DATABASE_PASSWORD: example
       SMTP_ADDRESS: smtp.example.com
       SMTP_PORT: 587
-      SMTP_DOMAIN: example.com
+      SMTP_HOST: example.com
       SMTP_USERNAME: username
       SMTP_PASSWORD: password
       SENDPULSE_API_USER: username
